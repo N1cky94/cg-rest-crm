@@ -1,24 +1,29 @@
 package com.colruytgroup.restcrm.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import lombok.*;
 
 import static java.util.Objects.isNull;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @EqualsAndHashCode
+@Entity
+@Table(name = "People")
 public class Contact {
+    @Id
+    private Long id;
+    @Column(name = "contact_name")
     private String name;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
+    private ContactStatus status;
+    @ManyToOne
     private Company currentCompany;
+
 
     public void connectToCompany(Company company) {
         if (! isNull(currentCompany)) {

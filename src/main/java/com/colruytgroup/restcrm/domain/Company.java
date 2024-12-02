@@ -1,16 +1,16 @@
 package com.colruytgroup.restcrm.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.*;
 
-import java.util.List;
-
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
+@Entity
 public class Company {
+    @Id private Long id;
     @Setter private String name;
     @Setter private String address;
 
