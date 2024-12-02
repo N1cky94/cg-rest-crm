@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  contactie-CRM-database:
+    image: postgres:15.1-alpine
+    container_name: Contactie-DB
+    restart: always
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PSW}
+    ports:
+      - "5432:5432"
