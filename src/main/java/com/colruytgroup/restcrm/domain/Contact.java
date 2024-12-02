@@ -6,7 +6,6 @@ import lombok.*;
 import static java.util.Objects.isNull;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @EqualsAndHashCode
@@ -14,8 +13,9 @@ import static java.util.Objects.isNull;
 @Table(name = "People")
 public class Contact {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "contact_name")
+    @Column(name = "contact_name", unique = true)
     private String name;
     private String email;
     private String phone;
@@ -24,6 +24,20 @@ public class Contact {
     @ManyToOne
     private Company currentCompany;
 
+    public Contact(String name, String email, String phone, ContactStatus status) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+    }
+
+    public Contact(String name, String email, String phone, ContactStatus status, Company currentCompany) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.currentCompany = currentCompany;
+    }
 
     public void connectToCompany(Company company) {
         if (! isNull(currentCompany)) {
@@ -31,7 +45,6 @@ public class Contact {
         }
 
         currentCompany = company;
-
     }
 
     public void removeFromCompany() {

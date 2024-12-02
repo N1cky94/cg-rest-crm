@@ -32,7 +32,7 @@ class ContactTest {
         // Arrange
         Company cg = new Company("Colruyt Group", "Eddingensesteenweg 196, Halle");
         Company arc = new Company("Archilios", "Eddingensesteenweg 196, Halle");
-        Contact lander = new Contact("Lander", "lander@cg.com", "0465748377", cg);
+        Contact lander = new Contact("Lander", "lander@cg.com", "0465748377", ContactStatus.NEW , cg);
 
         // Act - Assert
         assertThrows(RuntimeException.class, () -> lander.connectToCompany(arc));
@@ -43,7 +43,7 @@ class ContactTest {
     @Test
     void disconnectCompanyFromContact_HappyPath() {
         Company cg = new Company("Colruyt Group", "Eddingensesteenweg 196, Halle");
-        Contact lander = new Contact("Lander", "lander@cg.com", "0465748377", cg);
+        Contact lander = new Contact("Lander", "lander@cg.com", "0465748377", ContactStatus.NEW , cg);
 
         lander.removeFromCompany();
 

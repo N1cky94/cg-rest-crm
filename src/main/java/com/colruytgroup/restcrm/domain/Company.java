@@ -1,18 +1,25 @@
 package com.colruytgroup.restcrm.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @EqualsAndHashCode
 @Entity
 public class Company {
-    @Id private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Setter private String name;
     @Setter private String address;
+
+    public Company(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 
     @Override
     public String toString() {
